@@ -18,7 +18,7 @@ The games continues until the player closes the window.
 
 
 
-## Authers
+## Authors
 ---
 * Easton Pulver
 * Emory Hubbard
