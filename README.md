@@ -6,7 +6,7 @@ Greed is a game in which the player seekds to gather as many fallin gems as poss
 # Greed rules
 Greed is played according to the following rules.
 
-Gems (*)and rocks(o) randomly appear and fall from the top of the screen.
+Gems (*) and rocks(o) randomly appear and fall from the top of the screen.
 The player(#) can move left or right along the bottom of the screen.
 If the player touches a gem they earn a point.
 If the player touches a rock they lose a point.
@@ -18,7 +18,7 @@ The games continues until the player closes the window.
 
 
 
-## Authers
+## Authors
 ---
 * Easton Pulver
 * Emory Hubbard
