@@ -1,4 +1,3 @@
-class OutputService:
 import pyray
 from color import Color
 
@@ -68,7 +67,7 @@ def testFunction():
         output_service.clear_buffer
         output_service.draw_text("o", x, y, 4, color)
         output_service.flush_buffer()
-        thing["x"] = thing["x"] + 5
-        thing["y"] = thing["y"] + 5
+        thing["x"] = thing["x"] + 1
+        thing["y"] = thing["y"] + 1
 
-#testFunction()
+testFunction()
