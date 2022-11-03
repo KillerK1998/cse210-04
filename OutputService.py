@@ -1,3 +1,4 @@
+class OutputService:
 import pyray
 from color import Color
 

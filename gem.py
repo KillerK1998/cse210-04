@@ -1,4 +1,5 @@
-class Gem():
+from OutputService import OutputService
+class Gem(OutputService):
 
     def __init__(self):
 
