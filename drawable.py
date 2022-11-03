@@ -67,12 +67,14 @@ def test_function():
     prev_time = datetime.now()
     cur_time = datetime.now()
     output_service = OutputService()
+    output_service.set_width(1500)
+    output_service.set_height(900)
     output_service.open_window()
 
     test_object = Drawable()
     test_object.set_color(Color(255, 0, 0))
     test_object.set_text("o")
-    test_object.set_velocity(Point(50, 50)) #move 50 pixels/second in x direction and y direction
+    test_object.set_velocity(Point(0, 50)) #move 50 pixels/second in x direction and y direction
     test_object.set_position(Point(0, 0))
     test_object.set_output_service(output_service)
 

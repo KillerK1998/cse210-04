@@ -42,6 +42,7 @@ class OutputService:
     def clear_buffer(self):
         pyray.begin_drawing()
         pyray.clear_background(pyray.BLACK)
+        print("ran clear buffer")
 
     def draw_text(self, text, x, y, font_size, color):
         pyray.draw_text(text, x, y, font_size, color)
@@ -64,10 +65,10 @@ def testFunction():
     while output_service.is_window_open():
         x = thing["x"]
         y = thing["y"]
-        output_service.clear_buffer
-        output_service.draw_text("o", x, y, 4, color)
+        output_service.clear_buffer()
+        output_service.draw_text("o", x, y, 15, color)
         output_service.flush_buffer()
         thing["x"] = thing["x"] + 1
         thing["y"] = thing["y"] + 1
 
-testFunction()
+#testFunction()
