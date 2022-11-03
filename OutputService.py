@@ -1,5 +1,5 @@
 class OutputService:
-import pyray
+    import pyray
 
 class OutputService:
     def __init__(self, width, height, caption, frame_rate):
