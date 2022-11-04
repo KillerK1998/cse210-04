@@ -7,3 +7,4 @@ class Gem(OutputService):
         self.appearance = "*"
         self.points = 1
         self._position = Point(randomNumberFrom0To1* WINDOWWIDTH, 0)
+        self._velocity(Point(0, 50))
