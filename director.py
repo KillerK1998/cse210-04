@@ -5,6 +5,7 @@ from point import Point
 
 WINDOW_WIDTH = 1500
 WINDOW_HEIGHT = 900
+self.Gem[]
 CAPTION = "Greed"
 
 class Director:
@@ -30,11 +31,14 @@ class Director:
 
         self._output_service.close_window()
 
+    
     def do_updates(self):
         self._output_service.do_updates()
         self._player.do_updates()
+         if gems.length < 20: gems.append(Gem())
 
     def do_outputs(self):
         self._output_service.clear_buffer()
         self._player.draw()
         self._output_service.flush_buffer()
+        Gem.draw()
