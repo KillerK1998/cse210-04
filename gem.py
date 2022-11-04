@@ -6,3 +6,4 @@ class Gem(OutputService):
         super(Gem,self).__init__()
         self.appearance = "*"
         self.points = 1
+        self._position = Point(randomNumberFrom0To1* WINDOWWIDTH, 0)
