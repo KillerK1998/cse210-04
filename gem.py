@@ -1,10 +1,12 @@
 from OutputService import OutputService
-class Gem(OutputService):
+from point import Point
+import random
 
+class Gem(OutputService):
     def __init__(self):
 
-        super(Gem,self).__init__()
+        super(Gem).__init__()
         self.appearance = "*"
         self.points = 1
-        self._position = Point(randomNumberFrom0To1* WINDOWWIDTH, 0)
+        self._position = Point(random.randInt(0, 1) * 1500, 0)
         self._velocity(Point(0, 50))
