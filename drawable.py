@@ -5,13 +5,13 @@ from OutputService import OutputService
 
 class Drawable:
 
-    def __init__(self):
-        self._text = ""
+    def __init__(self, output_service):
+        self._text = "default"
         self._font_size = 10
         self._color = Color(255, 255, 255)
         self._position = Point(0, 0)
         self._velocity = Point(0, 0)
-        self._output_service = None
+        self._output_service = output_service
 
     def get_color(self):
         return self._color
@@ -28,7 +28,11 @@ class Drawable:
     def get_velocity(self):
         return self._velocity
 
-    def update_position(self, delta_time):
+    def do_updates(self):
+        self.update_position()
+
+    def update_position(self):
+        delta_time = self._output_service.get_delta_time()
         x = self._position.x + self._velocity.x * delta_time
         y = self._position.y + self._velocity.y * delta_time
         self._position = Point(x, y)
@@ -64,33 +68,25 @@ class Drawable:
           int(self._position.y), self._font_size, tuple_color)
 
 def test_function():
-    prev_time = datetime.now()
-    cur_time = datetime.now()
     output_service = OutputService()
     output_service.set_width(1500)
     output_service.set_height(900)
     output_service.open_window()
 
-    test_object = Drawable()
+    test_object = Drawable(output_service)
     test_object.set_color(Color(255, 0, 0))
     test_object.set_text("o")
     test_object.set_velocity(Point(0, 50)) #move 50 pixels/second in x direction and y direction
     test_object.set_position(Point(0, 0))
-    test_object.set_output_service(output_service)
+    test_object.set_font_size(25)
 
     while (output_service.is_window_open()):
-        prev_time = cur_time
-        cur_time = datetime.now()
-        delta_time = get_delta_time_in_seconds(cur_time, prev_time)
-        test_object.update_position(delta_time)
+        output_service.do_updates()
+        test_object.do_updates()
         output_service.clear_buffer()
         test_object.draw()
         output_service.flush_buffer()
-
-def get_delta_time_in_seconds(cur_time, prev_time):
-    delta_time = cur_time - prev_time #DOES NOT return float, returns timedelta object due to datetime API
-    return delta_time.total_seconds() #DOES return float
-
+        
 #test_function()
 
 
