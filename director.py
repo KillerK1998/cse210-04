@@ -2,10 +2,10 @@ from drawable_player import DrawablePlayer
 from InputService import InputService
 from OutputService import OutputService
 from point import Point
+from gem import Gem
 
 WINDOW_WIDTH = 1500
 WINDOW_HEIGHT = 900
-self.Gem[]
 CAPTION = "Greed"
 
 class Director:
@@ -21,6 +21,7 @@ class Director:
         player_start_x = WINDOW_WIDTH / 2
         player_start_y = WINDOW_HEIGHT / 2
         self._player.set_position(Point(player_start_x, player_start_y))
+        self._gems = []
 
     def start_game(self):
         self._output_service.open_window()
@@ -35,10 +36,12 @@ class Director:
     def do_updates(self):
         self._output_service.do_updates()
         self._player.do_updates()
-         if gems.length < 20: gems.append(Gem())
+        if self._gems.length < 20:
+            self._gems.append(Gem())
 
     def do_outputs(self):
         self._output_service.clear_buffer()
         self._player.draw()
+        for gem in self._gems:
+            gem.draw()
         self._output_service.flush_buffer()
-        Gem.draw()
