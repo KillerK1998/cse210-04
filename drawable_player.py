@@ -10,6 +10,7 @@ class DrawablePlayer(Drawable):
     def __init__(self, output_service, input_service):
         super().__init__(output_service)
         self._text = "#"
+        self._font_size = 30
         self._input_service = input_service
         self._speed = 200 #default speed is 200 pixels per second
 
