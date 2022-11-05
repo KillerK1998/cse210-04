@@ -43,6 +43,7 @@ class Director:
         for gem in self._gems:
             if gem.get_position() = self.player.get_position()
                 self.gems.remove(gem)
+            if gem.get_position.y =self.player.get_position
 
     def do_outputs(self):
         self._output_service.clear_buffer()
