@@ -5,6 +5,7 @@ from point import Point
 from gem import Gem
 from score import Score
 import pyray
+from rock import Rock
 
 WINDOW_WIDTH = 1500
 WINDOW_HEIGHT = 900
@@ -25,6 +26,7 @@ class Director:
         self._player.set_position(Point(player_start_x, player_start_y))
         self._gems = []
         self._score = Score()
+        self._rocks = []
 
     def start_game(self):
         self._output_service.open_window()
@@ -35,7 +37,6 @@ class Director:
 
         self._output_service.close_window()
 
-    
     def do_updates(self):
         self._output_service.do_updates()
         self._player.do_updates()
@@ -53,8 +54,6 @@ class Director:
                 self._gems.remove(gem)
             if gem.get_position().y >= WINDOW_HEIGHT:
                 self._gems.remove(gem)
-        
-        Score.update_score()
 
     def is_close(self, x, otherx):
         is_close = False
@@ -72,5 +71,7 @@ class Director:
         self._player.draw()
         for gem in self._gems:
             gem.draw()
+        for rock in self._rocks:
+            rock.draw()
         self._output_service.flush_buffer()
         Score.display_score()

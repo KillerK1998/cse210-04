@@ -1,7 +1,15 @@
-class Rock():
+from OutputService import OutputService
+from point import Point
+import random
+from drawable import Drawable
 
-    def __init__(self):
+class Rock(Drawable):
+    def __init__(self, output_service):
 
-        super(Rock,self).__init__()
-        self.appearance = "O"
-        self.points = 1
+        super().__init__(output_service)
+        self._text = "0"
+        self._font_size = 25
+        self._points = 1
+        self._position = Point(random.randint(0, 1500), 0)
+        print(f"{self._position.x} {self._position.y}")
+        self._velocity = Point(0, 50)
