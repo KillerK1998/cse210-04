@@ -4,6 +4,7 @@ from OutputService import OutputService
 from point import Point
 from gem import Gem
 import pyray
+from rock import Rock
 
 WINDOW_WIDTH = 1500
 WINDOW_HEIGHT = 900
@@ -23,6 +24,7 @@ class Director:
         player_start_y = WINDOW_HEIGHT / 2
         self._player.set_position(Point(player_start_x, player_start_y))
         self._gems = []
+        self._rocks = []
 
     def start_game(self):
         self._output_service.open_window()
@@ -51,6 +53,21 @@ class Director:
             if gem.get_position().y >= WINDOW_HEIGHT:
                 self._gems.remove(gem)
 
+        for rock in self._rocks:
+            rock.do_updates()
+        if len(self._rocks) < 20:
+            self._rocks.append(Rock(self._output_service))
+        for rock in self._rocks:
+            rock_p = rock.get_position()
+            player_p = self._player.get_position()
+
+            if pyray.is_key_down(pyray.KEY_A):
+                print(f"{rock_p.x} {rock_p.y} {player_p.x} {player_p.y}")
+            if self.is_close(int(rock_p.x), int(player_p.x)) and self.is_close(int(rock_p.y), int(player_p.y)):
+                self._rocks.remove(rock)
+            if rock.get_position().y >= WINDOW_HEIGHT:
+                self._rocks.remove(rock)
+
     def is_close(self, x, otherx):
         is_close = False
         precision = 50
@@ -67,4 +84,6 @@ class Director:
         self._player.draw()
         for gem in self._gems:
             gem.draw()
+        for rock in self._rocks:
+            rock.draw()
         self._output_service.flush_buffer()
