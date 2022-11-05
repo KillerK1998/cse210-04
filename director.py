@@ -3,6 +3,7 @@ from InputService import InputService
 from OutputService import OutputService
 from point import Point
 from gem import Gem
+import pyray
 
 WINDOW_WIDTH = 1500
 WINDOW_HEIGHT = 900
@@ -41,9 +42,24 @@ class Director:
         if len(self._gems) < 20:
             self._gems.append(Gem(self._output_service))
         for gem in self._gems:
-            if gem.get_position() = self.player.get_position()
-                self.gems.remove(gem)
-            if gem.get_position.y =self.player.get_position
+            gem_p = gem.get_position()
+            player_p = self._player.get_position()
+
+            if pyray.is_key_down(pyray.KEY_A):
+                print(f"{gem_p.x} {gem_p.y} {player_p.x} {player_p.y}")
+            if self.is_close(int(gem_p.x), int(player_p.x)) and self.is_close(int(gem_p.y), int(player_p.y)):
+                self._gems.remove(gem)
+
+    def is_close(self, x, otherx):
+        is_close = False
+        precision = 50
+        lower_limit = otherx - precision
+        upper_limit = otherx + precision
+
+        if lower_limit <= x <= upper_limit:
+            is_close = True
+
+        return is_close
 
     def do_outputs(self):
         self._output_service.clear_buffer()
