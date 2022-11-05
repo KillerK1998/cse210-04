@@ -25,7 +25,7 @@ class Director:
         player_start_y = WINDOW_HEIGHT / 2
         self._player.set_position(Point(player_start_x, player_start_y))
         self._gems = []
-        self._score = Score()
+        self._score = Score(self._output_service)
         self._rocks = []
 
     def start_game(self):
@@ -52,12 +52,29 @@ class Director:
                 print(f"{gem_p.x} {gem_p.y} {player_p.x} {player_p.y}")
             if self.is_close(int(gem_p.x), int(player_p.x)) and self.is_close(int(gem_p.y), int(player_p.y)):
                 self._gems.remove(gem)
+                self._score.update_score(1)
             if gem.get_position().y >= WINDOW_HEIGHT:
                 self._gems.remove(gem)
+    
+        for rock in self._rocks:
+            rock.do_updates()
+        if len(self._rocks) < 20:
+            self._rocks.append(Rock(self._output_service))
+        for rock in self._rocks:
+            rock_p = rock.get_position()
+            player_p = self._player.get_position()
+
+            if pyray.is_key_down(pyray.KEY_A):
+                print(f"{rock_p.x} {rock_p.y} {player_p.x} {player_p.y}")
+            if self.is_close(int(rock_p.x), int(player_p.x)) and self.is_close(int(rock_p.y), int(player_p.y)):
+                self._rocks.remove(rock)
+                self._score.update_score(-1)
+            if rock.get_position().y >= WINDOW_HEIGHT:
+                self._rocks.remove(rock)
 
     def is_close(self, x, otherx):
         is_close = False
-        precision = 50
+        precision = 25
         lower_limit = otherx - precision
         upper_limit = otherx + precision
 
@@ -69,9 +86,9 @@ class Director:
     def do_outputs(self):
         self._output_service.clear_buffer()
         self._player.draw()
+        self._score.draw()
         for gem in self._gems:
             gem.draw()
         for rock in self._rocks:
             rock.draw()
         self._output_service.flush_buffer()
-        Score.display_score()
