@@ -49,6 +49,8 @@ class Director:
                 print(f"{gem_p.x} {gem_p.y} {player_p.x} {player_p.y}")
             if self.is_close(int(gem_p.x), int(player_p.x)) and self.is_close(int(gem_p.y), int(player_p.y)):
                 self._gems.remove(gem)
+            if gem.get_position().y >= WINDOW_HEIGHT:
+                self._gems.remove(gem)
 
     def is_close(self, x, otherx):
         is_close = False
