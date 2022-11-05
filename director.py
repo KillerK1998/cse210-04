@@ -33,7 +33,6 @@ class Director:
 
         self._output_service.close_window()
 
-    
     def do_updates(self):
         self._output_service.do_updates()
         self._player.do_updates()
