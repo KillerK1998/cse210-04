@@ -1,9 +1,10 @@
 from pyray import *
-class Score:
+from drawable import Drawable
+class Score(Drawable):
     def __init__(self):
         self.value = 0
     def display_score(self):
         #displays current scores
-        print(f"Score: {self.value}", 20, 20,25)
+        print(f"Score: {self.value}")
     def update_score(self,points):
         self.value += points
