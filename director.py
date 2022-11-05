@@ -36,8 +36,10 @@ class Director:
     def do_updates(self):
         self._output_service.do_updates()
         self._player.do_updates()
-        if self._gems.length < 20:
-            self._gems.append(Gem())
+        for gem in self._gems:
+            gem.do_updates()
+        if len(self._gems) < 20:
+            self._gems.append(Gem(self._output_service))
 
     def do_outputs(self):
         self._output_service.clear_buffer()
