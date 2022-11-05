@@ -11,5 +11,4 @@ class Gem(Drawable):
         self._font_size = 25
         self._points = 1
         self._position = Point(random.randint(0, 1500), 0)
-        print(f"{self._position.x} {self._position.y}")
         self._velocity = Point(0, 50)
