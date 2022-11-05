@@ -40,8 +40,9 @@ class Director:
             gem.do_updates()
         if len(self._gems) < 20:
             self._gems.append(Gem(self._output_service))
-        for Gem in _gems
-            remove 
+        for gem in self._gems:
+            if gem.get_position() = self.player.get_position()
+                self.gems.remove(gem)
 
     def do_outputs(self):
         self._output_service.clear_buffer()
